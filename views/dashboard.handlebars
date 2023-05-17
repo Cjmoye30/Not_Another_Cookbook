@@ -1,6 +1,9 @@
 <h1>Dashboard Page!</h1>
-<h3>Welcome, {{session.user_id}}</h3>
+<h3>Welcome, {{session.fname}} {{session.lname}}!</h3>
+<p>View, Edit, or Upload your latest recipes!</p>
 
+<hr>
+<h2>Your Recipes:</h2>
 {{#each recipeArr}}
 <div class="recipeGroup">
     <h4>{{recipe_name}}</h4>
@@ -9,6 +12,8 @@
     {{!-- <p>{{images.[0].filePath}}</p> --}}
     <img class="image-upload" src="/uploads/{{images.[0].filePath}}" alt="delish">
 </div>
+
+<hr>
 
 {{/each}}
 

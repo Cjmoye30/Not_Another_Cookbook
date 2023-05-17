@@ -7,6 +7,11 @@
   <title>User Registry</title>
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/styles.css">
+
+  {{!-- JQuery Script --}}
+  <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
+    integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -14,12 +19,12 @@
     <h1>
       Cam's Cookbook
     </h1>
-    {{#if logged_in}}
+    {{#if session.logged_in}}
     <nav>
-      
+
       <button class="btn" id="logout">logout</button>
-      <button class="btn"> <a href="/dashboard">Dashboard</a></button>  
-      <button class="btn"> <a href="/upload">Upload</a></button>  
+      <button class="btn"> <a href="/dashboard">Dashboard</a></button>
+      <button class="btn"> <a href="/upload">Upload</a></button>
 
     </nav>
     {{/if}}
@@ -28,10 +33,10 @@
     {{{ body }}}
   </main>
   <footer>
-      
+
   </footer>
 
-  {{#if logged_in}}
+  {{#if session.logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>

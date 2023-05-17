@@ -19,6 +19,11 @@ Images.init(
             allowNull: false,
         },
 
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
         // Foreign key
         recipe_id: {
             type: DataTypes.INTEGER,
