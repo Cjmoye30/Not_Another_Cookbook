@@ -1,0 +1,11 @@
+* {
+    /* border: .1px solid black; */
+}
+
+.image-upload {
+    /* display: inline-block; */
+    max-height: 200px;
+    max-width: 200px;
+    width: auto;
+    height: auto;
+}

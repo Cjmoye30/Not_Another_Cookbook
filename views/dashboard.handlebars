@@ -1,0 +1,14 @@
+<h1>Dashboard Page!</h1>
+<h3>Welcome, {{session.user_id}}</h3>
+
+{{#each recipeArr}}
+<div class="recipeGroup">
+    <h4>{{recipe_name}}</h4>
+    <p>{{description}}</p>
+    <p>{{date_created}}</p>
+    {{!-- <p>{{images.[0].filePath}}</p> --}}
+    <img class="image-upload" src="/uploads/{{images.[0].filePath}}" alt="delish">
+</div>
+
+{{/each}}
+
