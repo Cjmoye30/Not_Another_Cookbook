@@ -19,11 +19,6 @@ Images.init(
             allowNull: false,
         },
 
-        description: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-
         // Foreign key
         recipe_id: {
             type: DataTypes.INTEGER,
@@ -35,14 +30,14 @@ Images.init(
         },
 
         // Foreign key
-        // author_id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     references: {
-        //         model: User,
-        //         key: 'id'
-        //     }
-        // }
+        author_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: User,
+                key: 'id'
+            }
+        }
     },
     {
         sequelize,

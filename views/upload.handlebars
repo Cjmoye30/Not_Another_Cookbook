@@ -6,47 +6,45 @@
     <li>Add in steps for the recipe - click add to add more steps as needed</li>
     <li>Add Ingredients</li>
     <li>Upload Images</li>
-    <li>When I'm on this page, after i create the recipe title and description from the first form, I can then reload the page and store that recipe ID in the session storage, and try to tie that into when I upload the images and other details about the recipe.</li>
+    <li>When I'm on this page, after i create the recipe title and description from the first form, I can then reload
+        the page and store that recipe ID in the session storage, and try to tie that into when I upload the images and
+        other details about the recipe.</li>
 </ol>
 
+<p>Creating recipes for: {{session.user_id}}</p>
+<p>Current recipe ID: {{session.currReciipeId}}</p>
+
 {{!-- Form to upload recipe name and descrip --}}
-  <form class="form new-recipe-form">
+<form class="form new-recipe-form">
     <div class="form-group">
-      <label for="recipe-title">Recipe Title:</label>
-      <input class="form-input" type="text" id="recipe-title" />
+        <label for="recipe-name">Recipe Name:</label>
+        <input class="form-input" type="text" id="recipe_name" />
     </div>
 
     <div class="form-group">
-      <label for="recipe-desc">Recipe Description:</label>
-      <textarea class="form-input" id="recipe-desc"></textarea>
+        <label for="recipe-desc">Recipe Description:</label>
+        <textarea class="form-input" id="recipe_desc"></textarea>
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary newRecipeButton">Create</button>
+        <button type="submit" class="btn btn-primary newRecipeButton">Create</button>
     </div>
-  </form>
+</form>
 
+<hr>
 
-  <script src="/js/upload.js"></script>
+<script src="/js/upload.js"></script>
 
-{{!-- Form to upload images --}}
+{{!-- Form to upload images - going to leave it like this for now and just let everything work as is - the images are uploading correctly and I just need to do some minor tweaking in other places to piece it all together. --}}
 <form class="form-image-upload" method="POST" action="/api/users/multiple" enctype="multipart/form-data">
-    <div>
 
-        <div class="form-group">
-            <label for="recipe-name">Recipe Name</label>
-            <input class="form-input" type="text" id="recipe_name">
-        </div>
-
-        <div class="form-group">
-            <label for="recipe-description">Description</label>
-            <input class="form-input" type="text" id="recipe_description">
-        </div>
-
+    <div class="form-group">
         <label>Recipe Images</label>
         <input id="upload-files" type="file" name="profile-files" required multiple />
     </div>
-    <div>
+
+    <div class="form-group">
         <input type="submit" value="Upload" />
     </div>
 </form>
+

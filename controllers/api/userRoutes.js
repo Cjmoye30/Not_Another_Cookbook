@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Images } = require('../../models');
+const { User, Images, Recipes } = require('../../models');
 const multer = require('multer');
 const upload = multer({ dest: './uploads' })
 
@@ -48,22 +48,60 @@ router.post('/logout', (req, res) => {
   }
 });
 
+router.post('/create-recipe', async (req, res) => {
+  console.log("POST request to create a new recipe hit!");
+
+  // get the req.body
+  console.log(req.body);
+  
+  // create a new recipe name and desc from the req. body
+  const newRecipe = await Recipes.create({
+    recipe_name: req.body.recipe_name,
+    description: req.body.description,
+    author_id: req.session.user_id
+
+  });
+  console.log(newRecipe);
+
+  // this logs successfully - need to store it somewhere so I can access it for the rest of this page.
+  console.log(newRecipe.id);
+  req.session.currRecipeId = newRecipe.id;
+  console.log(req.session.currRecipeId);
+  console.log(req.session.user_id);
+
+  // req.session.save(() => {
+  //   // do I also need to recreate the user id here as well?
+  //   req.session.recipe_id = newRecipe.id
+  // })
+
+  // console.log(req.session.recipe_id);
+  res.json(newRecipe);
+
+  // get the id of the newly created recipe, and store that into the session storage for the upload page
+
+})
+
 router.post('/multiple', upload.array('profile-files', 12), async function (req, res, next) {
   console.log("POST request for multiple files hit!")
 
   try {
-    console.log("Does this hit?")
-    console.log(req.files);
-    console.log(req.files[0].filename);
+    // console.log(req.files);
+    // console.log(req.files[0].filename);
     const filesObj = req.files;
     console.log(filesObj.length);
 
     for (let i = 0; i < filesObj.length; i++) {
       console.log(req.files[i].filename);
+
+      // we need to create the row for the recipe so we can get the recipe id, store in the session storage, and then pass that into this object
+      const newImage = await Images.create({
+        filePath: req.files[i].filename,
+        recipe_id: req.session.currRecipeId,
+        author_id: req.session.user_id,
+      })
+
+      console.log(newImage)
     }
-
-    // use a for loop to get all of the file names, and then create a new row in the images table and somehow tie in the recipe id from the newly created recipe form
-
     
   } catch (err) {
     console.log(err)

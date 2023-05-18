@@ -1,9 +1,5 @@
-<h1>Dashboard Page!</h1>
-<h3>Welcome, {{session.fname}} {{session.lname}}. User_ID: {{session.user_id}}!</h3>
-<p>View, Edit, or Upload your latest recipes!</p>
+<h1>All Our Recipes</h1>
 
-<hr>
-<h2>Your Recipes:</h2>
 {{#each recipeArr}}
 <div class="recipeGroup">
     <h4>{{recipe_name}}</h4>
@@ -16,4 +12,3 @@
 <hr>
 
 {{/each}}
-

@@ -35,8 +35,6 @@ router.get('/upload', async (req, res) => {
 })
 
 router.get('/dashboard', async (req, res) => {
-
-
   try {
 
     const recipeData = await Recipes.findAll({
@@ -52,13 +50,39 @@ router.get('/dashboard', async (req, res) => {
     });
 
     const recipeArr = recipeData.map(recipeData => recipeData.toJSON());
+    console.log("-------------------------RECIPE ARRAY -------------------------")
     console.log(recipeArr)
     res.render('dashboard', {recipeArr})
 
   } catch (err) {
-    res.status(500),json(err)
+    res.status(500).json(err)
   }
 });
+
+router.get('/recipes', async (req, res) => {
+  try {
+
+
+    const recipeData = await Recipes.findAll({
+      include: [
+        {
+          model: Images,
+          attributes: ['filePath']
+        }
+      ]
+    })
+
+    
+    const recipeArr = recipeData.map(recipeData => recipeData.toJSON());
+    console.log("-------------------------RECIPE ARRAY -------------------------")
+    console.log(recipeArr)
+    res.render('allRecipes', {recipeArr})
+
+
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
 
 
 module.exports = router;
