@@ -3,21 +3,25 @@ const { Model } = require('sequelize');
 const { User, Recipes, Images } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['fname', 'ASC']],
+
+    const recipeData = await Recipes.findAll({
+      include: [
+        {
+          model: Images,
+          attributes: ['filePath']
+        }
+      ]
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    const recipeArr = recipeData.map(recipeData => recipeData.toJSON());
+    console.log("-------------------------RECIPE ARRAY -------------------------")
+    console.log(recipeArr)
+    res.render('homepage', {recipeArr})
 
-    res.render('homepage', {
-      users,
-      logged_in: req.session.logged_in,
-    });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err)
   }
 });
 
@@ -34,6 +38,7 @@ router.get('/upload', async (req, res) => {
   res.render('upload');
 })
 
+// Dashboard specific to the user logged in
 router.get('/dashboard', async (req, res) => {
   try {
 
@@ -58,31 +63,5 @@ router.get('/dashboard', async (req, res) => {
     res.status(500).json(err)
   }
 });
-
-router.get('/recipes', async (req, res) => {
-  try {
-
-
-    const recipeData = await Recipes.findAll({
-      include: [
-        {
-          model: Images,
-          attributes: ['filePath']
-        }
-      ]
-    })
-
-    
-    const recipeArr = recipeData.map(recipeData => recipeData.toJSON());
-    console.log("-------------------------RECIPE ARRAY -------------------------")
-    console.log(recipeArr)
-    res.render('allRecipes', {recipeArr})
-
-
-  } catch (err) {
-    res.status(500).json(err)
-  }
-})
-
 
 module.exports = router;

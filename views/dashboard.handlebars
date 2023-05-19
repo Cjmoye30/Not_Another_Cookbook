@@ -9,11 +9,23 @@
     <h4>{{recipe_name}}</h4>
     <p>{{description}}</p>
     <p>{{date_created}}</p>
-    {{!-- <p>{{images.[0].filePath}}</p> --}}
-    <img class="image-upload" src="/uploads/{{images.[0].filePath}}" alt="delish">
+
+    {{!-- new each function for all ingredients --}}
+    <h6>Ingredients</h6>
+    <hr>
+    {{#each ingredients}}
+    <div class="ingredients">
+        <p>{{this.item}} - {{this.qty}}</p>
+    </div>
+    {{/each}}
+
+    <h6>Instructions</h6>
+    <hr>
+    <p>Insert Recipe Instructions here:</p>
 </div>
 
+    <img class="image-upload" src="/uploads/{{images.[0].filePath}}" alt="delish">
 <hr>
-
 {{/each}}
 
+{{!-- make anotehr one with the same shit and see if it works --}}

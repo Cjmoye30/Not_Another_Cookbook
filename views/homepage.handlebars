@@ -1,12 +1,16 @@
 {{!-- All user profiles where you can click to see their recipes --}}
-<h1>Our Users</h1>
-{{#each users as |user| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2>{{user.fname}} {{user.lname}}</h2>
-  </div>
-  <div class="col-md-6">
-    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
-  </div>
+<h1>Not Another Cookbook</h1>
+<h3>How is this different than other blogs for food recipes?</h3>
+<p>Well, I personally hate getting to a recipe where I have to scroll through multiple novels to get to the ingedients sections, and still have to keep scrolling to find where the steps to cook are.</p>
+<p>Here at "Not Another Cookbook", we cut strait to the niddy griddy and immediately show the recipe, ingredients, process, and pictures.</p>
+<p>Our authors then choose to provide a link to their bio, or have their inspiration AT THE BOTTOM of the page.</p>
+
+{{!-- Show all of our recipes by title and image only as a sneakpeak --}}
+<h2>Our Recipes</h2>
+{{#each recipeArr}}
+<div class="recipeGroup">
+    <h4>{{recipe_name}}</h4>
+    <img class="image-upload" src="/uploads/{{images.[0].filePath}}" alt="delish">
 </div>
+<hr>
 {{/each}}

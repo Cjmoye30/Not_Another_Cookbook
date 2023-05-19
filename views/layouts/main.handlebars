@@ -17,21 +17,18 @@
 <body>
   <header class="display-flex justify-space-between align-center p-2">
     <h1>
-      Cam's Cookbook
+      Not Another Cookbook
     </h1>
     {{#if session.logged_in}}
     <nav>
-
-      {{!-- <button class="btn"> <a href="/dashboard">Dashboard</a></button>
-      <button class="btn"> <a href="/upload">Upload</a></button> --}}
-
-      <a href="/upload"><button class="btn btn-primary">Upload</button></a>
+      <a href="/"><button class="btn btn-primary">Home</button></a>
       <a href="/dashboard"><button class="btn btn-primary">Dashboard</button></a>
-      <a href="/Recipes"><button class="btn btn-primary">All Recipes</button></a>
+      <a href="/upload"><button class="btn btn-primary">Upload</button></a>
       <button class="btn btn-primary" id="logout">Logout</button>
 
-
-
+      {{else}}
+      <a href="/"><button class="btn btn-primary">Home</button></a>
+      <a href="/login"><button class="btn btn-primary">Login</button></a>
     </nav>
     {{/if}}
   </header>

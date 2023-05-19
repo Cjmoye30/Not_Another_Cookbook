@@ -2,19 +2,18 @@
 
 <h3>Steps:</h3>
 <ol>
-    <li>Add Recipe title and description</li>
+    <li>Add Recipe title and description and click create - this creates a placeholder in the DB for the recipe</li>
+    <li>Add Ingredients and click upload - ingtedients are then added to our placeholder</li>
     <li>Add in steps for the recipe - click add to add more steps as needed</li>
-    <li>Add Ingredients</li>
-    <li>Upload Images</li>
-    <li>When I'm on this page, after i create the recipe title and description from the first form, I can then reload
+    <li>Upload Images and then you're done - notify the user everything is completed and then redirect to their dashboard using the session id</li>
+    {{!-- <li>When I'm on this page, after i create the recipe title and description from the first form, I can then reload
         the page and store that recipe ID in the session storage, and try to tie that into when I upload the images and
-        other details about the recipe.</li>
+        other details about the recipe.</li> --}}
 </ol>
 
-<p>Creating recipes for: {{session.user_id}}</p>
-<p>Current recipe ID: {{session.currReciipeId}}</p>
-
 {{!-- Form to upload recipe name and descrip --}}
+<h3>Title & Description:</h3>
+<hr>
 <form class="form new-recipe-form">
     <div class="form-group">
         <label for="recipe-name">Recipe Name:</label>
@@ -31,29 +30,7 @@
     </div>
 </form>
 
-<hr>
-
-
-{{!-- Form to upload images - going to leave it like this for now and just let everything work as is - the images are
-uploading correctly and I just need to do some minor tweaking in other places to piece it all together. --}}
-<form class="form-image-upload" method="POST" action="/api/users/multiple" enctype="multipart/form-data">
-
-    <div class="form-group">
-        <label>Recipe Images</label>
-        <input id="upload-files" type="file" name="profile-files" required multiple />
-    </div>
-
-    <div class="form-group">
-        <input type="submit" value="Upload" />
-    </div>
-</form>
-
-{{!-- Section to upload ingredients --}}
-{{!-- append a list of empty form items for the user to enter in - these will be li --}}
-{{!-- have a button to add one more item, 5 more, or 10 items - each item with a delete button that will remove it from
-the page --}}
-<hr>
-<h3>Recipe Ingredients Section</h3>
+<h3>Ingredients:</h3>
 <div class="row ingredients-row2">
 
     <div class="ingredient-entry row">
@@ -81,11 +58,33 @@ the page --}}
     <button class="btn btn-secondary add-10-recipe-item">Add x10</button>
 
     <button class="btn check-btn">Check</button>
+    <button class="btn check-btn upload-ingredients">Upload Ingredients</button>
 
-
-    {{!-- on submit, I could compile all of the ingredients into an array, then have the user confirm if everything
-    looks right, and then send that entire array to one column in the table --}}
-    {{!-- for the length of items, run it through a for loop to add all of the items into an array --}}
 </div>
 
+<hr>
+
+<h3>Instructions:</h3>
+<hr>
+
 <script src="/js/upload.js"></script>
+
+{{!-- Form to upload images - going to leave it like this for now and just let everything work as is - the images are
+uploading correctly and I just need to do some minor tweaking in other places to piece it all together. --}}
+<form class="form-image-upload" method="POST" action="/api/users/multiple" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label>Recipe Images</label>
+        <input id="upload-files" type="file" name="profile-files" required multiple />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Upload" />
+    </div>
+</form>
+
+{{!-- Section to upload ingredients --}}
+{{!-- append a list of empty form items for the user to enter in - these will be li --}}
+{{!-- have a button to add one more item, 5 more, or 10 items - each item with a delete button that will remove it from
+the page --}}
+

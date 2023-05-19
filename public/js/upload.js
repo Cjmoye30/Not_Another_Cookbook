@@ -1,3 +1,5 @@
+
+
 $('.form-image-upload').on("submit", async (e) => {
     e.preventDefault();
 
@@ -99,5 +101,50 @@ $(".check-btn").on("click", () => {
         return false;
       });
     console.log(finalArr);
+    console.log(JSON.stringify(finalArr));
+
 });
 
+// on button click - hit the upload ingredient route
+
+$(".upload-ingredients").on("click", async () => {
+    const ingredientsLen = $(".recipe-item").length;
+    const ingredient = $(".recipe-item");
+    const ingredientQty = $(".recipe-qty");
+    const ingredientObjArray = [];
+
+    for (let i = 0; i < ingredientsLen; i++) {
+        const recipeObj = {
+            item: $(ingredient[i]).val(),
+            qty: $(ingredientQty[i]).val()
+        };
+        ingredientObjArray.push(recipeObj)
+    };
+    console.log(ingredientObjArray);
+    const finalArr = ingredientObjArray.filter(element => {
+        if (element.item !== "" && element.qty !== "") {
+          return true;
+        }
+        return false;
+      });
+    console.log(finalArr);
+    console.log(JSON.stringify(finalArr));
+
+    // send the final array to the backend
+    // add in the id of the current recipe we're using
+    const response = await fetch('api/users/upload-ingredients/:id', {
+        method: "PUT",
+        body: JSON.stringify(finalArr),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    console.log(response);
+
+    if (response.ok) {
+        console.log("we are good to proceed!")
+    } else {
+        console.log("Something went wrong")
+    }
+
+});

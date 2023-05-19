@@ -26,9 +26,9 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.fname = userData.fname,
-      req.session.lname = userData.lname,
-      req.session.email = userData.emal,
-      req.session.logged_in = true;
+        req.session.lname = userData.lname,
+        req.session.email = userData.emal,
+        req.session.logged_in = true;
 
       res.json({ user: userData, message: 'You are now logged in!' });
     });
@@ -53,7 +53,7 @@ router.post('/create-recipe', async (req, res) => {
 
   // get the req.body
   console.log(req.body);
-  
+
   // create a new recipe name and desc from the req. body
   const newRecipe = await Recipes.create({
     recipe_name: req.body.recipe_name,
@@ -67,9 +67,41 @@ router.post('/create-recipe', async (req, res) => {
   req.session.currRecipeId = newRecipe.id;
   console.log(req.session.currRecipeId);
   console.log(req.session.user_id);
+  res.status(200).json(req.body);
 
-  res.json(newRecipe);
-})
+});
+
+// upload ingredients
+// I think I need to pass in an ID to this or something? I don't fucking know
+router.put('/upload-ingredients/:id', async (req, res) => {
+  console.log("POST request to upload recipe ingredients hit!")
+  console.log(req.body);
+  // console.log(req.session.currRecipeId);
+  // console.log(req.session.user_id);
+
+  try {
+    const recipeIng = await Recipes.update(
+      {
+        ingredients: req.body
+      },
+      {
+        where: {
+          id: req.session.currRecipeId
+        }
+      }
+    );
+
+    res.json({
+      success: true,
+      data: recipeIng,
+      message: 'Ingredients added!'
+    });
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+});
 
 router.post('/multiple', upload.array('profile-files', 12), async function (req, res, next) {
   console.log("POST request for multiple files hit!")
@@ -89,7 +121,7 @@ router.post('/multiple', upload.array('profile-files', 12), async function (req,
       })
       console.log(newImage)
     }
-    
+
   } catch (err) {
     console.log(err)
     res.status(500).json(err)

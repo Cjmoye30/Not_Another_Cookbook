@@ -23,6 +23,10 @@ Recipes.init(
             allowNull: false,
         },
 
+        ingredients: {
+            type: DataTypes.JSON
+        },
+
         date_created: {
             type: DataTypes.DATE,
             allowNull: false,
