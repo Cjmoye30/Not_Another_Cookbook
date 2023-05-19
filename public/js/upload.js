@@ -86,6 +86,7 @@ $(".check-btn").on("click", () => {
     const ingredientQty = $(".recipe-qty");
     const ingredientObjArray = [];
 
+    // push all data into an array
     for (let i = 0; i < ingredientsLen; i++) {
         const recipeObj = {
             item: $(ingredient[i]).val(),
@@ -93,6 +94,8 @@ $(".check-btn").on("click", () => {
         };
         ingredientObjArray.push(recipeObj)
     };
+
+    // filter the array to eliminate any blanks
     console.log(ingredientObjArray);
     const finalArr = ingredientObjArray.filter(element => {
         if (element.item !== "" && element.qty !== "") {
@@ -106,7 +109,6 @@ $(".check-btn").on("click", () => {
 });
 
 // on button click - hit the upload ingredient route
-
 $(".upload-ingredients").on("click", async () => {
     const ingredientsLen = $(".recipe-item").length;
     const ingredient = $(".recipe-item");
@@ -147,4 +149,29 @@ $(".upload-ingredients").on("click", async () => {
         console.log("Something went wrong")
     }
 
+});
+
+// check ingredients fields
+$(".check-btn-ingredients").on("click", async () => {
+    const instructionsLen = $(".recipe-instruction").length;
+    console.log(instructionsLen);
+
+    const instructions = $(".recipe-instruction");
+    const instructionsArr = [];
+
+    for (let i = 0; i < instructionsLen; i++) {
+        const item = $(instructions[i]).val()
+        instructionsArr.push(item);
+    };
+    console.log("Instructions Array: ",instructionsArr);
+
+    // filter the array to eliminate any blanks
+    const finalArr = instructionsArr.filter(element => {
+        if (element !== "") {
+          return true;
+        }
+        return false;
+      });
+
+      console.log("Final Instructions Array", finalArr);
 });

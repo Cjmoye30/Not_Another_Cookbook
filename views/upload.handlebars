@@ -5,13 +5,19 @@
     <li>Add Recipe title and description and click create - this creates a placeholder in the DB for the recipe</li>
     <li>Add Ingredients and click upload - ingtedients are then added to our placeholder</li>
     <li>Add in steps for the recipe - click add to add more steps as needed</li>
-    <li>Upload Images and then you're done - notify the user everything is completed and then redirect to their dashboard using the session id</li>
-    {{!-- <li>When I'm on this page, after i create the recipe title and description from the first form, I can then reload
+    <li>Upload Images and then you're done - notify the user everything is completed and then redirect to their
+        dashboard using the session id</li>
+    {{!-- <li>When I'm on this page, after i create the recipe title and description from the first form, I can then
+        reload
         the page and store that recipe ID in the session storage, and try to tie that into when I upload the images and
         other details about the recipe.</li> --}}
 </ol>
 
 {{!-- Form to upload recipe name and descrip --}}
+
+{{!-- add in sections for each of these fields where the user in entering shit in - will make it a lot easier to
+navigate for me when coding --}}
+
 <h3>Title & Description:</h3>
 <hr>
 <form class="form new-recipe-form">
@@ -64,8 +70,33 @@
 
 <hr>
 
-<h3>Instructions:</h3>
-<hr>
+<section id="instructions">
+    <h3>Instructions:</h3>
+    <hr>
+    <div class="row instructions-row">
+
+        <ol class="instructions-list">
+            <li>
+                <div class="ingredient-entry ">
+                    <input type="text" class="form-control recipe-instruction col col-12">
+                </div>
+            </li>
+            <li>
+                <div class="ingredient-entry ">
+                    <input type="text" class="form-control recipe-instruction col col-12">
+                </div>
+            </li>
+            <li>
+                <div class="ingredient-entry ">
+                    <input type="text" class="form-control recipe-instruction col col-12">
+                </div>
+            </li>
+        </ol>
+
+    </div>
+        <button class="btn check-btn-ingredients">Check</button>
+
+</section>
 
 <script src="/js/upload.js"></script>
 
@@ -87,4 +118,3 @@ uploading correctly and I just need to do some minor tweaking in other places to
 {{!-- append a list of empty form items for the user to enter in - these will be li --}}
 {{!-- have a button to add one more item, 5 more, or 10 items - each item with a delete button that will remove it from
 the page --}}
-

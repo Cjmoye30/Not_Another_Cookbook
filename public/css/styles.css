@@ -1,5 +1,5 @@
 * {
-    /* border: .1px solid black; */
+    border: .1px solid black;
 }
 
 .image-upload {
@@ -15,13 +15,22 @@
     background-color: yellow;
 }
 
-.ingredients-row2 {
+.ingredients-row2, .instructions-row {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
 }
 
 #recipe-ingredients {
+    width: 100%;
+}
+
+#instructions {
+    background-color: olivedrab;
+}
+
+.instructions-input {
+    margin: 0 auto;
     width: 100%;
 }
 
