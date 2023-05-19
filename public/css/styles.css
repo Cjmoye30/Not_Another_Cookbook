@@ -9,3 +9,19 @@
     width: auto;
     height: auto;
 }
+
+.ingredients-row {
+    width: 100%;
+    background-color: yellow;
+}
+
+.ingredients-row2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#recipe-ingredients {
+    width: 100%;
+}
+

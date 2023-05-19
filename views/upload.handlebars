@@ -33,9 +33,9 @@
 
 <hr>
 
-<script src="/js/upload.js"></script>
 
-{{!-- Form to upload images - going to leave it like this for now and just let everything work as is - the images are uploading correctly and I just need to do some minor tweaking in other places to piece it all together. --}}
+{{!-- Form to upload images - going to leave it like this for now and just let everything work as is - the images are
+uploading correctly and I just need to do some minor tweaking in other places to piece it all together. --}}
 <form class="form-image-upload" method="POST" action="/api/users/multiple" enctype="multipart/form-data">
 
     <div class="form-group">
@@ -48,3 +48,44 @@
     </div>
 </form>
 
+{{!-- Section to upload ingredients --}}
+{{!-- append a list of empty form items for the user to enter in - these will be li --}}
+{{!-- have a button to add one more item, 5 more, or 10 items - each item with a delete button that will remove it from
+the page --}}
+<hr>
+<h3>Recipe Ingredients Section</h3>
+<div class="row ingredients-row2">
+
+    <div class="ingredient-entry row">
+        <p class="col col-6">Ingredients</p>
+        <p class="col col-1">Qty</p>
+    </div>
+    <div class="ingredient-entry row">
+        <input type="text" class="form-control recipe-item col col-6">
+        <input type="text" class="form-control recipe-qty col col-1">
+    </div>
+    <div class="ingredient-entry row">
+        <input type="text" class="form-control recipe-item col col-6">
+        <input type="text" class="form-control recipe-qty col col-1">
+    </div>
+    <div class="ingredient-entry row">
+        <input type="text" class="form-control recipe-item col col-6">
+        <input type="text" class="form-control recipe-qty col col-1">
+    </div>
+</div>
+
+{{!-- buttons to add more items --}}
+<div class="add-recipe-fields-group">
+    <button class="btn btn-secondary add-1-recipe-item">Add x1</button>
+    <button class="btn btn-secondary add-5-recipe-item">Add x5</button>
+    <button class="btn btn-secondary add-10-recipe-item">Add x10</button>
+
+    <button class="btn check-btn">Check</button>
+
+
+    {{!-- on submit, I could compile all of the ingredients into an array, then have the user confirm if everything
+    looks right, and then send that entire array to one column in the table --}}
+    {{!-- for the length of items, run it through a for loop to add all of the items into an array --}}
+</div>
+
+<script src="/js/upload.js"></script>

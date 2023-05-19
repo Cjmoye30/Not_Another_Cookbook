@@ -17,48 +17,7 @@ $('.form-image-upload').on("submit", async (e) => {
             "Content-Type": "application/json"
         }
     })
-
 });
-
-// const name = document.getElementById("name");
-// const files = document.getElementById("upload-files");
-// const formData = new FormData();
-// // // Creates empty formData object
-// formData.append("name", name.value);
-// // Appends value of text input
-// for (let i = 0; i < files.files.length; i++) {
-//     formData.append("files", files.files[i]);
-// }
-
-// fetch('/api/users/multiple', {
-//     method: 'POST',
-//     body: formData, // Payload is formData object
-// })
-
-// const recipe_name = $('#recipe_name').val();
-// const description = $('#recipe_description').val();
-
-// console.log(recipe_name);
-// console.log(description);
-
-
-
-// on submit, we need to create a new image to the database which contains the file.pathname
-// const respone = await fetch('/api/users/multiple', {
-//     method: 'POST',
-//     body: JSON.stringify(recipeData),
-//     headers: {
-//         "Content-Type": "application/json"
-//     }
-// });
-
-// const responeData = await respone.json();
-// console.log(responeData);
-
-
-
-// alert("upload JS is connected!!!! that is what we were missing the entire time..................")
-
 
 $('.new-recipe-form').on("submit", async (e) => {
     e.preventDefault();
@@ -67,10 +26,6 @@ $('.new-recipe-form').on("submit", async (e) => {
         recipe_name: $('#recipe_name').val(),
         description: $('#recipe_desc').val(),
     }
-
-    // console.log(newRecipeObj);
-
-    // send a request to the backend, if success, then show the image upload option or the other steps in the process
 
     const response = await fetch('api/users/create-recipe', {
         method: "POST",
@@ -81,9 +36,68 @@ $('.new-recipe-form').on("submit", async (e) => {
     });
     console.log(response);
 
-    if(response.ok) {
+    if (response.ok) {
         console.log("we are good to proceed!")
     } else {
         console.log("Something went wrong")
     }
 });
+
+// Add additional fields for recipe items
+$(".add-1-recipe-item").on("click", () => {
+
+    const newDiv = $("<div>").addClass("ingredient-entry row");
+    const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
+    const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
+    newDiv.append(newInputItem).append(newQtyItem);
+    $(".ingredients-row2").append(newDiv);
+
+});
+
+$(".add-5-recipe-item").on("click", () => {
+    // loop 5x
+    for (let i = 0; i < 5; i++) {
+        const newDiv = $("<div>").addClass("ingredient-entry row");
+        const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
+        const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
+        newDiv.append(newInputItem).append(newQtyItem);
+        $(".ingredients-row2").append(newDiv);
+    }
+});
+
+$(".add-10-recipe-item").on("click", () => {
+    // loop 10x
+    for (let i = 0; i < 10; i++) {
+        const newDiv = $("<div>").addClass("ingredient-entry row");
+        const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
+        const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
+        newDiv.append(newInputItem).append(newQtyItem);
+        $(".ingredients-row2").append(newDiv);
+    }
+});
+
+// check button to validate what I'm doing
+$(".check-btn").on("click", () => {
+    // whenever the user deletes out anything, I can have something that then re-runs the array to update the list
+    const ingredientsLen = $(".recipe-item").length;
+    const ingredient = $(".recipe-item");
+    const ingredientQty = $(".recipe-qty");
+    const ingredientObjArray = [];
+
+    for (let i = 0; i < ingredientsLen; i++) {
+        const recipeObj = {
+            item: $(ingredient[i]).val(),
+            qty: $(ingredientQty[i]).val()
+        };
+        ingredientObjArray.push(recipeObj)
+    };
+    console.log(ingredientObjArray);
+    const finalArr = ingredientObjArray.filter(element => {
+        if (element.item !== "" && element.qty !== "") {
+          return true;
+        }
+        return false;
+      });
+    console.log(finalArr);
+});
+
