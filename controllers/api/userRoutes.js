@@ -72,7 +72,6 @@ router.post('/create-recipe', async (req, res) => {
 });
 
 // upload ingredients
-// I think I need to pass in an ID to this or something? I don't fucking know
 router.put('/upload-ingredients/:id', async (req, res) => {
   console.log("POST request to upload recipe ingredients hit!")
   console.log(req.body);
@@ -95,6 +94,35 @@ router.put('/upload-ingredients/:id', async (req, res) => {
       success: true,
       data: recipeIng,
       message: 'Ingredients added!'
+    });
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+});
+
+// upload instructions
+router.put('/upload-instructions/:id', async (req, res) => {
+  console.log("POST request to upload recipe instructions hit!")
+  console.log(req.body);
+
+  try {
+    const recipeIng = await Recipes.update(
+      {
+        instructions: req.body
+      },
+      {
+        where: {
+          id: req.session.currRecipeId
+        }
+      }
+    );
+
+    res.json({
+      success: true,
+      data: recipeIng,
+      message: 'Instructions added!'
     });
 
   } catch (err) {

@@ -104,10 +104,10 @@ $(".check-btn").on("click", () => {
     console.log(ingredientObjArray);
     const finalArr = ingredientObjArray.filter(element => {
         if (element.item !== "" && element.qty !== "") {
-          return true;
+            return true;
         }
         return false;
-      });
+    });
     console.log(finalArr);
     console.log(JSON.stringify(finalArr));
 
@@ -130,10 +130,10 @@ $(".upload-ingredients").on("click", async () => {
     console.log(ingredientObjArray);
     const finalArr = ingredientObjArray.filter(element => {
         if (element.item !== "" && element.qty !== "") {
-          return true;
+            return true;
         }
         return false;
-      });
+    });
     console.log(finalArr);
     console.log(JSON.stringify(finalArr));
 
@@ -168,17 +168,17 @@ $(".check-btn-ingredients").on("click", async () => {
         const item = $(instructions[i]).val()
         instructionsArr.push(item);
     };
-    console.log("Instructions Array: ",instructionsArr);
+    console.log("Instructions Array: ", instructionsArr);
 
     // filter the array to eliminate any blanks
     const finalArr = instructionsArr.filter(element => {
         if (element !== "") {
-          return true;
+            return true;
         }
         return false;
-      });
+    });
 
-      console.log("Final Instructions Array", finalArr);
+    console.log("Final Instructions Array", finalArr);
 });
 
 $(".add-1-instruction-item").on("click", () => {
@@ -191,8 +191,62 @@ $(".add-1-instruction-item").on("click", () => {
     newli.append(newDiv);
 
     $(".instructions-list").append(newli);
-    
+
 })
 $(".add-5-instruction-item").on("click", () => {
-    
+
+    for (let i = 0; i < 5; i++) {
+        const newli = $("<li>");
+        const newDiv = $("<div>").addClass("ingredient-entry");
+        const newInputItem = $("<textarea>").addClass("form-control recipe-instruction col col-12").attr("rows", "3");
+
+        newDiv.append(newInputItem);
+        newli.append(newDiv);
+
+        $(".instructions-list").append(newli);
+    }
+
+})
+
+// on click - upload instructions to the correct route
+$(".upload-instructions").on("click", async () => {
+    const instructionsLen = $(".recipe-instruction").length;
+    console.log(instructionsLen);
+
+    const instructions = $(".recipe-instruction");
+    const instructionsArr = [];
+
+    for (let i = 0; i < instructionsLen; i++) {
+        const item = $(instructions[i]).val()
+        instructionsArr.push(item);
+    };
+    console.log("Instructions Array: ", instructionsArr);
+
+    // filter the array to eliminate any blanks
+    const finalArr = instructionsArr.filter(element => {
+        if (element !== "") {
+            return true;
+        }
+        return false;
+    });
+
+    console.log("Final Instructions Array", finalArr);
+
+    // send the final array to the backend
+    // add in the id of the current recipe we're using
+    const response = await fetch('api/users/upload-instructions/:id', {
+        method: "PUT",
+        body: JSON.stringify(finalArr),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    console.log(response);
+
+    if (response.ok) {
+        console.log("we are good to proceed!")
+    } else {
+        console.log("Something went wrong")
+    }
+
 })

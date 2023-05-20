@@ -7,15 +7,27 @@ header {
     color: whitesmoke;
 }
 
-.image-upload {
-    /* display: inline-block; */
-    max-height: 200px;
-    max-width: 200px;
-    width: auto;
-    height: auto;
+/* -------------- Dashboard Page -------------- */
+.recipeGroup {
+    border: 1px solid black;
 }
 
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+}
 
+.caro-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-item {
+    /* max-height: 500px;
+    width: auto; */
+}
 
 #recipe-ingredients {
     width: 100%;
@@ -46,8 +58,6 @@ header {
 .list-group-item {
     display: list-item;
 }
-
-
 
 .ingredients-entry {
     display: flex;

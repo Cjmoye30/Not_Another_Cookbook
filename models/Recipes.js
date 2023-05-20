@@ -26,6 +26,9 @@ Recipes.init(
         ingredients: {
             type: DataTypes.JSON
         },
+        instructions: {
+            type: DataTypes.JSON
+        },
 
         date_created: {
             type: DataTypes.DATE,
