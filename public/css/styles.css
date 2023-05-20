@@ -1,5 +1,10 @@
 * {
-    border: .1px solid black;
+    /* border: .1px solid black; */
+}
+
+header {
+    background-color: rgb(14, 49, 0);
+    color: whitesmoke;
 }
 
 .image-upload {
@@ -10,23 +15,55 @@
     height: auto;
 }
 
-.ingredients-row {
-    width: 100%;
-    background-color: yellow;
-}
 
-.ingredients-row2, .instructions-row {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-}
 
 #recipe-ingredients {
     width: 100%;
 }
 
 #instructions {
-    background-color: olivedrab;
+    background-color: rgb(152, 255, 241);
+}
+
+#title-description {
+    background-color: rgb(255, 152, 212);
+}
+
+#instructions {
+    background-color: rgb(152, 255, 233);
+}
+
+/* -------------- Ingredients Section -------------- */
+#ingredients {
+    background-color: rgb(204, 255, 168);
+}
+
+.list-group {
+    list-style-position: inside;
+    display: inline-block;
+}
+
+.list-group-item {
+    display: list-item;
+}
+
+
+
+.ingredients-entry {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.ingredients-row,
+.instructions-row {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#recipe-images {
+    background-color: rgb(255, 172, 168);
 }
 
 .instructions-input {
@@ -34,3 +71,12 @@
     width: 100%;
 }
 
+footer {
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    text-align: center;
+    background-color: cornflowerblue;
+}

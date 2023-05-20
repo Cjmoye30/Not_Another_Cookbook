@@ -1,5 +1,3 @@
-
-
 $('.form-image-upload').on("submit", async (e) => {
     e.preventDefault();
 
@@ -48,33 +46,40 @@ $('.new-recipe-form').on("submit", async (e) => {
 // Add additional fields for recipe items
 $(".add-1-recipe-item").on("click", () => {
 
+    const newLi = $("<li>").addClass("list-group-item")
     const newDiv = $("<div>").addClass("ingredient-entry row");
     const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
     const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
+
     newDiv.append(newInputItem).append(newQtyItem);
-    $(".ingredients-row2").append(newDiv);
+    newLi.append(newDiv);
+    $(".ingredients-entry-container").append(newLi);
 
 });
 
 $(".add-5-recipe-item").on("click", () => {
     // loop 5x
     for (let i = 0; i < 5; i++) {
+        const newLi = $("<li>").addClass("list-group-item")
         const newDiv = $("<div>").addClass("ingredient-entry row");
         const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
         const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
         newDiv.append(newInputItem).append(newQtyItem);
-        $(".ingredients-row2").append(newDiv);
+        newLi.append(newDiv);
+        $(".ingredients-entry-container").append(newLi);
     }
 });
 
 $(".add-10-recipe-item").on("click", () => {
     // loop 10x
     for (let i = 0; i < 10; i++) {
+        const newLi = $("<li>").addClass("list-group-item")
         const newDiv = $("<div>").addClass("ingredient-entry row");
         const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
         const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
         newDiv.append(newInputItem).append(newQtyItem);
-        $(".ingredients-row2").append(newDiv);
+        newLi.append(newDiv);
+        $(".ingredients-entry-container").append(newLi);
     }
 });
 
@@ -175,3 +180,19 @@ $(".check-btn-ingredients").on("click", async () => {
 
       console.log("Final Instructions Array", finalArr);
 });
+
+$(".add-1-instruction-item").on("click", () => {
+
+    const newli = $("<li>");
+    const newDiv = $("<div>").addClass("ingredient-entry");
+    const newInputItem = $("<textarea>").addClass("form-control recipe-instruction col col-12").attr("rows", "3");
+
+    newDiv.append(newInputItem);
+    newli.append(newDiv);
+
+    $(".instructions-list").append(newli);
+    
+})
+$(".add-5-instruction-item").on("click", () => {
+    
+})

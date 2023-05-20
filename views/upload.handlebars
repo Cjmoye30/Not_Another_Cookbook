@@ -1,72 +1,99 @@
 <h1>Recipe Upload Page!</h1>
 
-<h3>Steps:</h3>
-<ol>
-    <li>Add Recipe title and description and click create - this creates a placeholder in the DB for the recipe</li>
-    <li>Add Ingredients and click upload - ingtedients are then added to our placeholder</li>
-    <li>Add in steps for the recipe - click add to add more steps as needed</li>
-    <li>Upload Images and then you're done - notify the user everything is completed and then redirect to their
-        dashboard using the session id</li>
-    {{!-- <li>When I'm on this page, after i create the recipe title and description from the first form, I can then
-        reload
-        the page and store that recipe ID in the session storage, and try to tie that into when I upload the images and
-        other details about the recipe.</li> --}}
-</ol>
+<section id="instructions">
+    <h3>Steps:</h3>
+    <ol>
+        <li>Add Recipe title and description and click create - this creates a placeholder in the DB for the recipe</li>
+        <li>Add Ingredients and click upload - ingtedients are then added to our placeholder</li>
+        <li>Add in steps for the recipe - click add to add more steps as needed</li>
+        <li>Upload Images and then you're done - notify the user everything is completed and then redirect to their
+            dashboard using the session id</li>
+        {{!-- <li>When I'm on this page, after i create the recipe title and description from the first form, I can then
+            reload
+            the page and store that recipe ID in the session storage, and try to tie that into when I upload the images
+            and
+            other details about the recipe.</li> --}}
+    </ol>
 
-{{!-- Form to upload recipe name and descrip --}}
+    {{!-- Form to upload recipe name and descrip --}}
 
-{{!-- add in sections for each of these fields where the user in entering shit in - will make it a lot easier to
-navigate for me when coding --}}
+    {{!-- add in sections for each of these fields where the user in entering shit in - will make it a lot easier to
+    navigate for me when coding --}}
 
-<h3>Title & Description:</h3>
+</section>
+
 <hr>
-<form class="form new-recipe-form">
-    <div class="form-group">
-        <label for="recipe-name">Recipe Name:</label>
-        <input class="form-input" type="text" id="recipe_name" />
+
+<section id="title-description">
+
+    <h3>Title & Description:</h3>
+    <hr>
+    <form class="form new-recipe-form">
+        <div class="form-group">
+            <label for="recipe-name">Recipe Name:</label>
+            <input class="form-input" type="text" id="recipe_name" />
+        </div>
+
+        <div class="form-group">
+            <label for="recipe-desc">Recipe Description:</label>
+            <textarea class="form-input" id="recipe_desc"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary newRecipeButton">Create</button>
+        </div>
+    </form>
+
+</section>
+
+<hr>
+
+<section id="ingredients">
+
+    <h3>Ingredients:</h3>
+    <hr>
+    <div class="row ingredients-row">
+
+        <ol class="ingredients-entry-container">
+            {{!-- need to update adding items to also add in a list item so and appended it to the new ordered list --}}
+            <div class="ingredient-entry row">
+                <p class="col col-6 recipe-item">Ingredients</p>
+                <p class="col col-1 recipe-qty">Qty</p>
+            </div>
+            <li class="list-group-item">
+                <div class="ingredient-entry row">
+                    <input type="text" class="form-control recipe-item col-6">
+                    <input type="text" class="form-control recipe-qty col-1">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="ingredient-entry row">
+                    <input type="text" class="form-control recipe-item col col-6">
+                    <input type="text" class="form-control recipe-qty col col-1">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="ingredient-entry row">
+                    <input type="text" class="form-control recipe-item col col-6">
+                    <input type="text" class="form-control recipe-qty col col-1">
+                </div>
+            </li>
+        </ol>
+
     </div>
 
-    <div class="form-group">
-        <label for="recipe-desc">Recipe Description:</label>
-        <textarea class="form-input" id="recipe_desc"></textarea>
+    {{!-- buttons to add more items --}}
+    <div class="add-recipe-fields-group">
+        <button class="btn btn-secondary add-1-recipe-item">Add x1</button>
+        <button class="btn btn-secondary add-5-recipe-item">Add x5</button>
+        <button class="btn btn-secondary add-10-recipe-item">Add x10</button>
+
+        <button class="btn check-btn">Check</button>
+        <button class="btn check-btn upload-ingredients">Upload Ingredients</button>
+
     </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary newRecipeButton">Create</button>
-    </div>
-</form>
-
-<h3>Ingredients:</h3>
-<div class="row ingredients-row2">
-
-    <div class="ingredient-entry row">
-        <p class="col col-6">Ingredients</p>
-        <p class="col col-1">Qty</p>
-    </div>
-    <div class="ingredient-entry row">
-        <input type="text" class="form-control recipe-item col col-6">
-        <input type="text" class="form-control recipe-qty col col-1">
-    </div>
-    <div class="ingredient-entry row">
-        <input type="text" class="form-control recipe-item col col-6">
-        <input type="text" class="form-control recipe-qty col col-1">
-    </div>
-    <div class="ingredient-entry row">
-        <input type="text" class="form-control recipe-item col col-6">
-        <input type="text" class="form-control recipe-qty col col-1">
-    </div>
-</div>
-
-{{!-- buttons to add more items --}}
-<div class="add-recipe-fields-group">
-    <button class="btn btn-secondary add-1-recipe-item">Add x1</button>
-    <button class="btn btn-secondary add-5-recipe-item">Add x5</button>
-    <button class="btn btn-secondary add-10-recipe-item">Add x10</button>
-
-    <button class="btn check-btn">Check</button>
-    <button class="btn check-btn upload-ingredients">Upload Ingredients</button>
-
-</div>
+</section>
 
 <hr>
 
@@ -78,23 +105,28 @@ navigate for me when coding --}}
         <ol class="instructions-list">
             <li>
                 <div class="ingredient-entry ">
-                    <input type="text" class="form-control recipe-instruction col col-12">
+                    <textarea class="form-control recipe-instruction col col-12" rows="3"></textarea>
                 </div>
             </li>
             <li>
                 <div class="ingredient-entry ">
-                    <input type="text" class="form-control recipe-instruction col col-12">
+                    <textarea class="form-control recipe-instruction col col-12" rows="3"></textarea>
                 </div>
             </li>
             <li>
                 <div class="ingredient-entry ">
-                    <input type="text" class="form-control recipe-instruction col col-12">
+                    <textarea class="form-control recipe-instruction col col-12" rows="3"></textarea>
                 </div>
             </li>
         </ol>
 
     </div>
+    <div class="add-instructions-items">
+        <button class="btn btn-secondary add-1-instruction-item">Add x1</button>
+        <button class="btn btn-secondary add-5-instruction-item">Add x5</button>
         <button class="btn check-btn-ingredients">Check</button>
+    </div>
+
 
 </section>
 
@@ -102,17 +134,25 @@ navigate for me when coding --}}
 
 {{!-- Form to upload images - going to leave it like this for now and just let everything work as is - the images are
 uploading correctly and I just need to do some minor tweaking in other places to piece it all together. --}}
-<form class="form-image-upload" method="POST" action="/api/users/multiple" enctype="multipart/form-data">
 
-    <div class="form-group">
-        <label>Recipe Images</label>
-        <input id="upload-files" type="file" name="profile-files" required multiple />
-    </div>
+<hr>
 
-    <div class="form-group">
-        <input type="submit" value="Upload" />
-    </div>
-</form>
+<section id="recipe-images">
+
+    <form class="form-image-upload" method="POST" action="/api/users/multiple" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label>Recipe Images</label>
+            <input id="upload-files" type="file" name="profile-files" required multiple />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+
+</section>
+
 
 {{!-- Section to upload ingredients --}}
 {{!-- append a list of empty form items for the user to enter in - these will be li --}}
