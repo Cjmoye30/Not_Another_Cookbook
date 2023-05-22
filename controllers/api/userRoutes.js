@@ -131,6 +131,7 @@ router.put('/upload-instructions/:id', async (req, res) => {
   }
 });
 
+// Route for image upload
 router.post('/multiple', upload.array('profile-files', 12), async function (req, res, next) {
   console.log("POST request for multiple files hit!")
 
@@ -154,6 +155,7 @@ router.post('/multiple', upload.array('profile-files', 12), async function (req,
     console.log(err)
     res.status(500).json(err)
   }
-})
+});
+
 
 module.exports = router;

@@ -1,0 +1,27 @@
+<h1>Single Recipe Page</h1>
+<p>Page to display a single recipe when the user clicks to view full details of a recipe</p>
+
+<h6>{{recipe_name}}</h6>
+<p>{{description}}</p>
+
+<hr>
+
+<div class="ingredients-wrapper">
+    <h6>Ingredients</h6>
+    <ol>
+        {{#each ingredients}}
+        <li>{{this.item}} - {{this.qty}}</li>
+        {{/each}}
+    </ol>
+</div>
+
+<hr>
+
+<div class="instructions-wrapper">
+    <h6>Instructions</h6>
+    <ol>
+        {{#each instructions}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ol>
+</div>

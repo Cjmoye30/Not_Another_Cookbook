@@ -64,4 +64,27 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
+// Single recipe page
+router.get('/single-recipe-page-view/:id', async (req, res) => {
+
+  const recipeId = req.params.id;
+
+  
+  try {
+    
+    console.log("Param ID: ",req.params.id);
+
+    const recipeData = await Recipes.findByPk(req.params.id);
+    const recipe = recipeData.toJSON();
+
+    console.log(recipe);
+
+    res.render('singleRecipePage', recipe)
+
+  } catch (err) {
+    res.status(500).json(err)
+  }
+
+});
+
 module.exports = router;

@@ -7,6 +7,17 @@
     process, and pictures.</p>
 <p>Our authors then choose to provide a link to their bio, or have their inspiration AT THE BOTTOM of the page.</p>
 
+<h6>Left to do:</h6>
+<ul>
+    <li>Create routes for delete button</li>
+    <li>Create routes for edit/update</li>
+    <li>Create route and view for viewing an individual recipe with full details in a separate page</li>
+    <li>Create sign-up page</li>
+    <li>Fix styling on upload page so the qty is wider since I don't necessarily need to take in only number</li>
+    <li>Styling</li>
+    <li>Launhing</li>
+</ul>
+
 {{!-- Show all of our recipes by title and image only as a sneakpeak --}}
 <h2>Our Recipes</h2>
 {{!-- {{#each recipeArr}}
@@ -17,45 +28,53 @@
 <hr>
 {{/each}} --}}
 
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
-    </div>
+<div class="container container-fluid">
 
-    <div class="carousel-inner">
 
-        {{!-- Default image to start things off seamlessly --}}
-        <div class="carousel-item active">
-            <img src="/uploads/starterPic" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
-            </div>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
         </div>
 
-        {{#limit recipeArr 2}}
-        <div class="carousel-item">
-            <img class="caro-img" src="/uploads/{{images.[0].filePath}}" alt="delish">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>{{recipe_name}}</h5>
-                <p>{{description}}</p>
-            </div>
-        </div>
-        {{/limit}}
+        <div class="carousel-inner">
 
+            {{!-- Default image to start things off seamlessly --}}
+            <div class="carousel-item active">
+                <img src="/uploads/starterPic" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+
+            {{#limit recipeArr 2}}
+            <div class="carousel-item">
+                <img class="caro-img" src="/uploads/{{images.[0].filePath}}" alt="delish">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{recipe_name}}</h5>
+                    <p>{{description}}</p>
+                </div>
+            </div>
+            {{/limit}}
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+
 </div>

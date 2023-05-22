@@ -2,12 +2,36 @@
     /* border: .1px solid black; */
 }
 
-header {
+header, footer {
     background-color: rgb(14, 49, 0);
+    color: whitesmoke;
+    height: 125px;
+}
+
+.headerLogo {
+    text-decoration: none;
     color: whitesmoke;
 }
 
+.headerLogo:visited {
+    color: whitesmoke;
+}
+
+.headerLogo:hover {
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    min-height: 100vh;
+}
+
 /* -------------- Dashboard Page -------------- */
+
 .recipeGroup {
     border: 1px solid black;
 }
@@ -24,10 +48,6 @@ header {
     object-position: center;
 }
 
-.carousel-item {
-    /* max-height: 500px;
-    width: auto; */
-}
 
 #recipe-ingredients {
     width: 100%;
@@ -88,5 +108,4 @@ footer {
     justify-content: center;
     height: 100px;
     text-align: center;
-    background-color: cornflowerblue;
 }

@@ -48,8 +48,8 @@ $(".add-1-recipe-item").on("click", () => {
 
     const newLi = $("<li>").addClass("list-group-item")
     const newDiv = $("<div>").addClass("ingredient-entry row");
-    const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
-    const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
+    const newInputItem = $("<input>").attr("type", "text").addClass("recipe-item col col-8");
+    const newQtyItem = $("<input>").attr("type", "text").addClass("recipe-qty col col-4");
 
     newDiv.append(newInputItem).append(newQtyItem);
     newLi.append(newDiv);
@@ -62,8 +62,8 @@ $(".add-5-recipe-item").on("click", () => {
     for (let i = 0; i < 5; i++) {
         const newLi = $("<li>").addClass("list-group-item")
         const newDiv = $("<div>").addClass("ingredient-entry row");
-        const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
-        const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
+        const newInputItem = $("<input>").attr("type", "text").addClass("recipe-item col col-8");
+        const newQtyItem = $("<input>").attr("type", "text").addClass("recipe-qty col col-4");
         newDiv.append(newInputItem).append(newQtyItem);
         newLi.append(newDiv);
         $(".ingredients-entry-container").append(newLi);
@@ -75,8 +75,8 @@ $(".add-10-recipe-item").on("click", () => {
     for (let i = 0; i < 10; i++) {
         const newLi = $("<li>").addClass("list-group-item")
         const newDiv = $("<div>").addClass("ingredient-entry row");
-        const newInputItem = $("<input>").attr("type", "text").addClass("form-control recipe-item col col-6");
-        const newQtyItem = $("<input>").attr("type", "text").addClass("form-control recipe-qty col col-1");
+        const newInputItem = $("<input>").attr("type", "text").addClass("recipe-item col col-8");
+        const newQtyItem = $("<input>").attr("type", "text").addClass("recipe-qty col col-4");
         newDiv.append(newInputItem).append(newQtyItem);
         newLi.append(newDiv);
         $(".ingredients-entry-container").append(newLi);
@@ -250,3 +250,5 @@ $(".upload-instructions").on("click", async () => {
     }
 
 })
+
+// single recipe view
