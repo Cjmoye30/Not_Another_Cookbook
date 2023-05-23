@@ -74,7 +74,15 @@ router.get('/single-recipe-page-view/:id', async (req, res) => {
     
     console.log("Param ID: ",req.params.id);
 
-    const recipeData = await Recipes.findByPk(req.params.id);
+    const recipeData = await Recipes.findByPk(req.params.id, {
+      include: [
+        {
+          model: Images,
+          attributes: ['id','filePath']
+        }
+      ]
+
+    });
     const recipe = recipeData.toJSON();
 
     console.log(recipe);

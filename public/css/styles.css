@@ -109,3 +109,17 @@ footer {
     height: 100px;
     text-align: center;
 }
+
+/* -------------- Single Page Recipe -------------- */
+.image-card {
+    position: relative;
+}
+
+.image-delete-button {
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    top: 10px;
+    color: whitesmoke;
+    font-size: 30px;
+}

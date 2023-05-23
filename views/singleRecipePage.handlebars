@@ -1,7 +1,32 @@
-<h1>Single Recipe Page</h1>
-<p>Page to display a single recipe when the user clicks to view full details of a recipe</p>
+<p>To do:</p>
+<ul>
+    <li>Create sections for each component</li>
+    <li>Add edit button for each component</li>
+    <li>Add in section at the very bottom (or top) which contains all of the images rather than having a slider which is
+        going to be more difficult</li>
+    <li>Add button to view all images since the hero will be limited to only 3 (or does it?)</li>
+</ul>
 
-<h6>{{recipe_name}}</h6>
+<hr>
+
+{{!-- button to add more photos --}}
+<form class="form-image-upload" method="POST" action="/api/users/multiple" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label>Add Additonal Photos</label>
+        <input id="upload-files" type="file" name="profile-files" required multiple />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Upload" />
+    </div>
+</form>
+
+<button class="btn btn-primary view-all-photos">View All Photos</button>
+
+<hr>
+
+<h1>{{recipe_name}}</h1>
 <p>{{description}}</p>
 
 <hr>
@@ -25,3 +50,23 @@
         {{/each}}
     </ol>
 </div>
+
+<hr>
+
+<section id="all-images-section">
+    <h6>All Images</h6>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {{#each images}}
+        <div class="col">
+            <div class="card image-card">
+                <img src="/uploads/{{this.filePath}}" class="card-img-top" alt="...">
+                <i id="{{id}}" class="fa-sharp fa-solid fa-xmark image-delete-button"></i>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+</section>
+
+<script src="/js/singlePage.js"></script>
