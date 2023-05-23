@@ -157,5 +157,24 @@ router.post('/multiple', upload.array('profile-files', 12), async function (req,
   }
 });
 
+// delete image from recipe
+router.delete('/delete-image/:id', async (req, res) => {
+
+  try {
+    const imageData = await Images.destroy({
+      where: {
+        id: req.params.id,
+      },
+    }); 
+    res.status(200).json(imageData);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err)
+  }
+
+
+})
+
 
 module.exports = router;
