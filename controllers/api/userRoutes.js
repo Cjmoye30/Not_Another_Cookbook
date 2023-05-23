@@ -75,8 +75,6 @@ router.post('/create-recipe', async (req, res) => {
 router.put('/upload-ingredients/:id', async (req, res) => {
   console.log("POST request to upload recipe ingredients hit!")
   console.log(req.body);
-  // console.log(req.session.currRecipeId);
-  // console.log(req.session.user_id);
 
   try {
     const recipeIng = await Recipes.update(
@@ -148,13 +146,40 @@ router.post('/multiple', upload.array('profile-files', 12), async function (req,
         recipe_id: req.session.currRecipeId,
         author_id: req.session.user_id,
       })
-      console.log(newImage)
+      console.log(newImage);
     }
 
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
   }
+});
+
+router.post('/single-page-images-upload/:id', upload.array('profile-files', 12), async function (req, res, next) {
+  console.log(req.session.currRecipeId)
+
+  try {
+    const filesObj = req.files;
+    console.log(filesObj.length);
+
+    for (let i = 0; i < filesObj.length; i++) {
+      console.log(req.files[i].filename);
+
+      // we need to create the row for the recipe so we can get the recipe id, store in the session storage, and then pass that into this object
+      const newImage = await Images.create({
+        filePath: req.files[i].filename,
+        recipe_id: req.session.currRecipeId,
+        author_id: req.session.user_id,
+      })
+      console.log(newImage);
+    }
+
+    res.redirect('back');
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+
 });
 
 // delete image from recipe
@@ -165,7 +190,7 @@ router.delete('/delete-image/:id', async (req, res) => {
       where: {
         id: req.params.id,
       },
-    }); 
+    });
     res.status(200).json(imageData);
 
   } catch (err) {

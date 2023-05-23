@@ -10,7 +10,7 @@
 <hr>
 
 {{!-- button to add more photos --}}
-<form class="form-image-upload" method="POST" action="/api/users/multiple" enctype="multipart/form-data">
+<form class="form-image-upload" method="POST" action="/api/users/single-page-images-upload/:id" enctype="multipart/form-data">
 
     <div class="form-group">
         <label>Add Additonal Photos</label>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Upload" />
+        <input class="single-page-upload" type="submit" value="Upload" />
     </div>
 </form>
 

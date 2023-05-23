@@ -68,7 +68,7 @@ router.get('/dashboard', async (req, res) => {
 router.get('/single-recipe-page-view/:id', async (req, res) => {
 
   const recipeId = req.params.id;
-
+  req.session.currRecipeId = recipeId;
   
   try {
     
