@@ -16,18 +16,8 @@ $(".image-delete-button").on("click", async (e) => {
 
 });
 
-// $(".single-page-upload").on("click", async (e) => {
-//     e.preventDefault();
-//     const imageID = e.target.id;
-//     console.log(imageID);
+// save recipe title and description changes
+$(".save-title-desc").on("click", async (e) => {
+    const recipeID = e.target.id;
 
-//     const response = await fetch(`/api/users/single-page-images-upload/${imageID}`, {
-//         method: "POST",
-//         body: JSON.stringify(imageID),
-//         headers: {
-//             "Content-Type": "application/json"
-//         }
-//     });
-
-//     console.log(response);
-// })
+})

@@ -4,27 +4,28 @@
 <hr>
 <h2>Your Recipes:</h2>
 
-{{#each recipeArr}}
-<p>Recipe ID: {{id}}</p>
-<div class="card mb-3 recipe-group">
-    <img class="image-upload" src="/uploads/{{images.[0].filePath}}" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">{{recipe_name}}</h5>
-        <p class="card-text">{{description}}</p>
-        <p class="card-text"><small class="text-muted">{{format_date date_created}}</small></p>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+    {{#each recipeArr}}
+    <div class="card mb-3 recipe-group">
+        <img class="image-upload" src="/uploads/{{images.[0].filePath}}" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{recipe_name}}</h5>
+            <p class="card-text">{{description}}</p>
+            <p class="card-text"><small class="text-muted">{{format_date date_created}}</small></p>
+        </div>
+
+        {{!-- each button has an id of the recipe --}}
+        <div class="card-footer">
+
+            {{!-- <a href="/single-recipe-page-edit"><i id="{{id}}" class="fa-solid fa-pen-to-square"></i></a> --}}
+
+            <i id="{{id}}" class="fa-solid fa-arrow-up-right-from-square single-recipe-view"></i>
+
+            {{!-- <i id="{{id}}" class="fa-solid fa-trash"></i> --}}
+
+        </div>
     </div>
-
-    {{!-- each button has an id of the recipe --}}
-    <div class="card-footer">
-
-        {{!-- <a href="/single-recipe-page-edit"><i id="{{id}}" class="fa-solid fa-pen-to-square"></i></a> --}}
-
-        <i id="{{id}}" class="fa-solid fa-arrow-up-right-from-square single-recipe-view"></i>
-
-        {{!-- <i id="{{id}}" class="fa-solid fa-trash"></i> --}}
-
-    </div>
+    {{/each}}
 </div>
-{{/each}}
-
 <script src="/js/dashboard.js"></script>

@@ -2,7 +2,8 @@
     /* border: .1px solid black; */
 }
 
-header, footer {
+header,
+footer {
     background-color: rgb(14, 49, 0);
     color: whitesmoke;
     height: 125px;
@@ -34,6 +35,7 @@ main {
 
 .recipeGroup {
     border: 1px solid black;
+
 }
 
 .recipe-header {
@@ -123,3 +125,35 @@ footer {
     color: whitesmoke;
     font-size: 30px;
 }
+
+.title-header-info {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(157, 247, 255);
+    padding: 5px;
+}
+
+.edit-icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.edit-button, .save-button {
+    padding: 5px;
+}
+
+.form-group-modal {
+    display: flex;
+    flex: column;
+    align-items: center;
+    margin: 5px;
+    width: 100%;
+}
+
+.edit-area {
+    width: 100%;
+}
+
+
+

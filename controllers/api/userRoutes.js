@@ -201,5 +201,22 @@ router.delete('/delete-image/:id', async (req, res) => {
 
 })
 
+// get details for a single recipe
+router.get('single-page-recipe-details/:id', async (req, res) => {
+
+  try {
+
+    const data = await Recipes.findByPk(req.params.id)
+    const recipeData = data.toJSON();
+
+    console.log(recipeData);
+    res.json(recipeData);
+
+  } catch (err) {
+    res.status(500).json(err)
+  }
+
+})
+
 
 module.exports = router;

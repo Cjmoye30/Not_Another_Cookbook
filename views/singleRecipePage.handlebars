@@ -1,60 +1,104 @@
-<p>To do:</p>
-<ul>
-    <li>Create sections for each component</li>
-    <li>Add edit button for each component</li>
-    <li>Add in section at the very bottom (or top) which contains all of the images rather than having a slider which is
-        going to be more difficult</li>
-    <li>Add button to view all images since the hero will be limited to only 3 (or does it?)</li>
-</ul>
 
-<hr>
+<div class="modal fade" id="title-desc-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update to: {{recipe_name}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-{{!-- button to add more photos --}}
-<form class="form-image-upload" method="POST" action="/api/users/single-page-images-upload/:id" enctype="multipart/form-data">
+                <div class="form-group form-group-modal">
+                    <label for="new-recipe-name">New Recipe Name:</label>
+                    <textarea class="edit-area" id="recipe_name">{{recipe_name}}</textarea>
+                </div>
 
-    <div class="form-group">
-        <label>Add Additonal Photos</label>
-        <input id="upload-files" type="file" name="profile-files" required multiple />
+                <hr>
+
+                <div class="form-group form-group-modal">
+                    <label for="new-recipe-desc">New Description:</label>
+                    <textarea class="edit-area" id="recipe_desc">{{description}}</textarea>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save-title-desc">Save changes</button>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <input class="single-page-upload" type="submit" value="Upload" />
-    </div>
-</form>
-
-<button class="btn btn-primary view-all-photos">View All Photos</button>
-
-<hr>
-
-<h1>{{recipe_name}}</h1>
-<p>{{description}}</p>
-
-<hr>
-
-<div class="ingredients-wrapper">
-    <h6>Ingredients</h6>
-    <ol>
-        {{#each ingredients}}
-        <li>{{this.item}} - {{this.qty}}</li>
-        {{/each}}
-    </ol>
 </div>
 
+<section id="single-page-recipe-title-section">
+
+    <div class="title-header-info">
+        <div class="header-text">
+            <h1>{{recipe_name}}</h1>
+            <p>{{description}}</p>
+
+        </div>
+        <div class="edit-icons">
+            <i id="{{id}}" class="fa-solid fa-pen-to-square edit-button edit-title-desc" data-bs-toggle="modal"
+                data-bs-target="#title-desc-modal"></i>
+        </div>
+    </div>
+
+</section>
+
 <hr>
 
-<div class="instructions-wrapper">
-    <h6>Instructions</h6>
-    <ol>
-        {{#each instructions}}
-        <li>{{this}}</li>
-        {{/each}}
-    </ol>
-</div>
+<section id="single-page-ingredients-section">
+
+    <div class="ingredients-wrapper">
+        <div class="title-header-info">
+            <div class="header-text">
+                <h2>Ingredients</h2>
+            </div>
+            <div class="edit-icons">
+                <i id="{{id}}" class="fa-solid fa-pen-to-square edit-button"></i>
+            </div>
+        </div>
+        <ol>
+            {{#each ingredients}}
+            <li>{{this.item}} - {{this.qty}}</li>
+            {{/each}}
+        </ol>
+    </div>
+
+</section>
+
+<hr>
+
+<section id="single-page-instructions-section">
+
+    <div class="instructions-wrapper">
+        <div class="title-header-info">
+            <div class="header-text">
+                <h2>Instructions</h2>
+            </div>
+            <div class="edit-icons">
+                <i id="{{id}}" class="fa-solid fa-pen-to-square edit-button"></i>
+            </div>
+        </div>
+        <ol>
+            {{#each instructions}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ol>
+    </div>
+
+</section>
 
 <hr>
 
 <section id="all-images-section">
-    <h6>All Images</h6>
+    <div class="title-header-info">
+        <div class="header-text">
+            <h2>Images</h2>
+        </div>
+
+    </div>
 
     <div class="row row-cols-1 row-cols-md-2 g-4">
         {{#each images}}
@@ -66,6 +110,20 @@
         </div>
         {{/each}}
     </div>
+
+    {{!-- button to add more photos --}}
+    <form class="form-image-upload" method="POST" action="/api/users/single-page-images-upload/:id"
+        enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label>Add Additonal Photos</label>
+            <input id="upload-files" type="file" name="profile-files" required multiple />
+        </div>
+
+        <div class="form-group">
+            <input class="single-page-upload" type="submit" value="Upload" />
+        </div>
+    </form>
 
 </section>
 
