@@ -30,7 +30,7 @@ $(".save-title-desc").on("click", async (e) => {
 
     console.log("Recipe Object: ", recipeObj)
     
-    const response = await fetch(`/api/users/update-recipe/${recipeID}`, {
+    const response = await fetch(`/api/users/update-title-desc/${recipeID}`, {
         method: "PUT",
         body: JSON.stringify(recipeObj),
         headers: {
@@ -121,6 +121,51 @@ $(".add-5-recipe-item").on("click", () => {
 });
 
 // update recipe instructions
+$(".save-instructions").on("click", async (e) => {
+
+    const recipeID = e.target.id;
+
+    const instructionsLen = $(".recipe-instruction").length;
+    console.log(instructionsLen);
+
+    const instructions = $(".recipe-instruction");
+    const instructionsArr = [];
+
+    for (let i = 0; i < instructionsLen; i++) {
+        const item = $(instructions[i]).val()
+        instructionsArr.push(item);
+    };
+    console.log("Instructions Array: ", instructionsArr);
+
+    // filter the array to eliminate any blanks
+    const finalArr = instructionsArr.filter(element => {
+        if (element !== "") {
+            return true;
+        }
+        return false;
+    });
+
+    console.log("Final Instructions Array", finalArr);
+
+    // send the final array to the backend
+    // add in the id of the current recipe we're using
+    const response = await fetch(`/api/users/update-instructions/${recipeID}`, {
+        method: "PUT",
+        body: JSON.stringify(finalArr),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    console.log(response);
+
+    if (response.ok) {
+        console.log("we are good to proceed!")
+        window.location.reload();
+    } else {
+        console.log("Something went wrong")
+    }
+});
+
 // add additional fields for recipe instructiosn
 $(".add-1-instruction-item").on("click", () => {
 

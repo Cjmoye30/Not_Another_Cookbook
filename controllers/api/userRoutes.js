@@ -251,5 +251,34 @@ router.put('/update-recipe-ingredients/:id', async (req, res) => {
 });
 
 // update recipe instructions
+router.put('/update-instructions/:id', async (req, res) => {
+
+  console.log(req.body);
+
+  try {
+    const recipeIng = await Recipes.update(
+      {
+        instructions: req.body
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    );
+
+    res.json({
+      success: true,
+      data: recipeIng,
+      message: 'Instructions added!'
+    });
+
+  } catch (err) {
+    console.log("Error!")
+    console.log(err)
+    res.status(500).json(err)
+  }
+});
+
 
 module.exports = router;

@@ -75,6 +75,42 @@
 </div>
 
 {{!-- Instructions Modal --}}
+<div class="modal fade" id="instructions-modal" tabindex="-1" aria-labelledby="instructions-modal" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="instructions-modal">Update Instructions:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <ol class="instructions-list">
+
+                    {{#each instructions}}
+                    <li>
+                        <div class="ingredient-entry ">
+                            <textarea class="form-control recipe-instruction col col-12" rows="3">{{this}}</textarea>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+
+            </div>
+            <div class="modal-footer">
+
+                <div class="add-recipe-fields-group">
+                    <button class="btn btn-secondary add-1-instruction-item">Add x1</button>
+                    <button class="btn btn-secondary add-5-instruction-item">Add x5</button>
+                </div>
+
+                <div class="closing-buttons">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="{{id}}" type="button" class="btn btn-primary save-instructions">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="single-page-recipe-title-section">
 
@@ -125,7 +161,7 @@
                 <h2>Instructions</h2>
             </div>
             <div class="edit-icons">
-                <i id="{{id}}" class="fa-solid fa-pen-to-square edit-button"></i>
+                <i id="{{id}}" class="fa-solid fa-pen-to-square edit-button" data-bs-toggle="modal" data-bs-target="#instructions-modal"></i>
             </div>
         </div>
         <ol>
@@ -163,12 +199,12 @@
         enctype="multipart/form-data">
 
         <div class="form-group">
-            <label>Add Additonal Photos</label>
+            <label class="photo-load-label">Add Additonal Photos</label>
             <input id="upload-files" type="file" name="profile-files" required multiple />
         </div>
 
         <div class="form-group">
-            <input class="single-page-upload" type="submit" value="Upload" />
+            <input class="single-page-upload btn btn-primary" type="submit" value="Upload!" />
         </div>
     </form>
 

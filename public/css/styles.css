@@ -155,10 +155,6 @@ footer {
     width: 100%;
 }
 
-.modal-dialog, .modal-content {
-    width: 700px;
-}
-
 .modal-footer {
     display: flex;
     justify-content: space-between;
@@ -166,4 +162,21 @@ footer {
 
 .ingredients-modal, .title-desc-modal, .instructions-modal {
     list-style: none;
+}
+
+.photo-load-label {
+    display: block;
+}
+
+.form-image-upload {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+#upload-files {
+    justify-content: center;
 }
