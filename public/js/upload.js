@@ -206,7 +206,7 @@ $(".add-5-instruction-item").on("click", () => {
         $(".instructions-list").append(newli);
     }
 
-})
+});
 
 // on click - upload instructions to the correct route
 $(".upload-instructions").on("click", async () => {
@@ -249,7 +249,7 @@ $(".upload-instructions").on("click", async () => {
         console.log("Something went wrong")
     }
 
-})
+});
 
 
 

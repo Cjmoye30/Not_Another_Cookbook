@@ -112,7 +112,7 @@ router.put('/upload-instructions/:id', async (req, res) => {
       },
       {
         where: {
-          id: req.session.currRecipeId
+          id: req.session.currRecipeId 
         }
       }
     );
@@ -222,22 +222,34 @@ router.put('/update-title-desc/:id', async (req, res) => {
   }
 });
 
-// get details for a single recipe
-// router.get('single-page-recipe-details/:id', async (req, res) => {
+// update recipe ingredients
+router.put('/update-recipe-ingredients/:id', async (req, res) => {
 
-//   try {
+  console.log(req.body)
 
-//     const data = await Recipes.findByPk(req.params.id)
-//     const recipeData = data.toJSON();
+  try {
+    const recipeData = await Recipes.update(
+      {
+        ingredients: req.body
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    );
+    res.json({
+      success: true,
+      data: recipeData,
+      message: 'Recipe Ingredients Updated!'
+    });
 
-//     console.log(recipeData);
-//     res.json(recipeData);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+});
 
-//   } catch (err) {
-//     res.status(500).json(err)
-//   }
-
-// })
-
+// update recipe instructions
 
 module.exports = router;

@@ -159,3 +159,11 @@ footer {
     width: 700px;
 }
 
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ingredients-modal, .title-desc-modal, .instructions-modal {
+    list-style: none;
+}

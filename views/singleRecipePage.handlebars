@@ -1,9 +1,9 @@
 {{!-- Title and Description Modal --}}
-<div class="modal fade" id="title-desc-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="title-desc-modal" tabindex="-1" aria-labelledby="title-desc-modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Update to: {{recipe_name}}</h1>
+                <h1 class="modal-title fs-5" id="title-desc-modal">Update Name & Description:</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -31,6 +31,49 @@
 </div>
 
 {{!-- Ingredients Modal --}}
+<div class="modal fade" id="ingredients-modal" tabindex="-1" aria-labelledby="ingredients-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ingredients-modal">Update Ingredients:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <ul class="ingredients-entry-container ingredients-modal">
+
+                    <div class="ingredient-entry row">
+                        <p class="col col-8 recipe-item">Ingredients</p>
+                        <p class="col col-4 recipe-qty">Qty</p>
+                    </div>
+
+                    {{#each ingredients}}
+                    <li class="list-group-item">
+                        <div class="ingredient-entry row">
+                            <input type="text" class="recipe-item col col-8" value="{{this.item}}">
+                            <input type="text" class="recipe-qty col col-4" value="{{this.qty}}">
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+
+            </div>
+            <div class="modal-footer">
+
+                <div class="add-recipe-fields-group">
+                    <button class="btn btn-secondary add-1-recipe-item">Add x1</button>
+                    <button class="btn btn-secondary add-5-recipe-item">Add x5</button>
+                </div>
+
+                <div class="closing-buttons">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="{{id}}" type="button" class="btn btn-primary save-ingredients">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {{!-- Instructions Modal --}}
 
 <section id="single-page-recipe-title-section">
@@ -59,14 +102,15 @@
                 <h2>Ingredients</h2>
             </div>
             <div class="edit-icons">
-                <i id="{{id}}" class="fa-solid fa-pen-to-square edit-button"></i>
+                <i id="{{id}}" class="fa-solid fa-pen-to-square edit-button edit-title-desc" data-bs-toggle="modal"
+                    data-bs-target="#ingredients-modal"></i>
             </div>
         </div>
-        <ol>
+        <ul>
             {{#each ingredients}}
             <li>{{this.item}} - {{this.qty}}</li>
             {{/each}}
-        </ol>
+        </ul>
     </div>
 
 </section>

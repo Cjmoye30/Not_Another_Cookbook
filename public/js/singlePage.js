@@ -30,7 +30,7 @@ $(".save-title-desc").on("click", async (e) => {
 
     console.log("Recipe Object: ", recipeObj)
     
-    const response = await fetch(`/api/users/update-title-desc/${recipeID}`, {
+    const response = await fetch(`/api/users/update-recipe/${recipeID}`, {
         method: "PUT",
         body: JSON.stringify(recipeObj),
         headers: {
@@ -50,5 +50,101 @@ $(".save-title-desc").on("click", async (e) => {
 });
 
 // update recipe ingredients
+$(".save-ingredients").on("click", async (e) => {
+    const recipeID = e.target.id;
+
+    const ingredientsLen = $(".recipe-item").length;
+    const ingredient = $(".recipe-item");
+    const ingredientQty = $(".recipe-qty");
+    const ingredientObjArray = [];
+
+    for (let i = 0; i < ingredientsLen; i++) {
+        const recipeObj = {
+            item: $(ingredient[i]).val(),
+            qty: $(ingredientQty[i]).val()
+        };
+        ingredientObjArray.push(recipeObj)
+    };
+    console.log(ingredientObjArray);
+    const finalArr = ingredientObjArray.filter(element => {
+        if (element.item !== "" && element.qty !== "") {
+            return true;
+        }
+        return false;
+    });
+    console.log(finalArr);
+    console.log(JSON.stringify(finalArr));
+
+    // send the final array to the backend
+    // add in the id of the current recipe we're using
+    const response = await fetch(`/api/users/update-recipe-ingredients/${recipeID}`, {
+        method: "PUT",
+        body: JSON.stringify(finalArr),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    console.log(response);
+
+    if (response.ok) {
+        window.location.reload()
+    } else {
+        console.log("Something went wrong")
+    }
+});
+
+// Add additional fields for recipe items
+$(".add-1-recipe-item").on("click", () => {
+
+    const newLi = $("<li>").addClass("list-group-item")
+    const newDiv = $("<div>").addClass("ingredient-entry row");
+    const newInputItem = $("<input>").attr("type", "text").addClass("recipe-item col col-8");
+    const newQtyItem = $("<input>").attr("type", "text").addClass("recipe-qty col col-4");
+
+    newDiv.append(newInputItem).append(newQtyItem);
+    newLi.append(newDiv);
+    $(".ingredients-entry-container").append(newLi);
+
+});
+
+$(".add-5-recipe-item").on("click", () => {
+    // loop 5x
+    for (let i = 0; i < 5; i++) {
+        const newLi = $("<li>").addClass("list-group-item")
+        const newDiv = $("<div>").addClass("ingredient-entry row");
+        const newInputItem = $("<input>").attr("type", "text").addClass("recipe-item col col-8");
+        const newQtyItem = $("<input>").attr("type", "text").addClass("recipe-qty col col-4");
+        newDiv.append(newInputItem).append(newQtyItem);
+        newLi.append(newDiv);
+        $(".ingredients-entry-container").append(newLi);
+    }
+});
 
 // update recipe instructions
+// add additional fields for recipe instructiosn
+$(".add-1-instruction-item").on("click", () => {
+
+    const newli = $("<li>");
+    const newDiv = $("<div>").addClass("ingredient-entry");
+    const newInputItem = $("<textarea>").addClass("form-control recipe-instruction col col-12").attr("rows", "3");
+
+    newDiv.append(newInputItem);
+    newli.append(newDiv);
+
+    $(".instructions-list").append(newli);
+
+})
+$(".add-5-instruction-item").on("click", () => {
+
+    for (let i = 0; i < 5; i++) {
+        const newli = $("<li>");
+        const newDiv = $("<div>").addClass("ingredient-entry");
+        const newInputItem = $("<textarea>").addClass("form-control recipe-instruction col col-12").attr("rows", "3");
+
+        newDiv.append(newInputItem);
+        newli.append(newDiv);
+
+        $(".instructions-list").append(newli);
+    }
+
+});
