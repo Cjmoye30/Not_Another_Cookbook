@@ -1,4 +1,4 @@
-
+{{!-- Title and Description Modal --}}
 <div class="modal fade" id="title-desc-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -9,26 +9,29 @@
             <div class="modal-body">
 
                 <div class="form-group form-group-modal">
-                    <label for="new-recipe-name">New Recipe Name:</label>
-                    <textarea class="edit-area" id="recipe_name">{{recipe_name}}</textarea>
+                    <label for="newRecipeName">New Recipe Name:</label>
+                    <textarea class="edit-area" id="newRecipeName">{{recipe_name}}</textarea>
                 </div>
 
                 <hr>
 
                 <div class="form-group form-group-modal">
-                    <label for="new-recipe-desc">New Description:</label>
-                    <textarea class="edit-area" id="recipe_desc">{{description}}</textarea>
+                    <label for="newRecipDesc">New Recipe Description:</label>
+                    <textarea class="edit-area" id="newRecipeDesc">{{description}}</textarea>
                 </div>
 
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary save-title-desc">Save changes</button>
+                <button id="{{id}}" type="button" class="btn btn-primary save-title-desc">Save changes</button>
             </div>
         </div>
     </div>
 </div>
+
+{{!-- Ingredients Modal --}}
+{{!-- Instructions Modal --}}
 
 <section id="single-page-recipe-title-section">
 

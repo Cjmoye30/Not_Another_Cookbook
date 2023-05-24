@@ -201,22 +201,43 @@ router.delete('/delete-image/:id', async (req, res) => {
 
 })
 
-// get details for a single recipe
-router.get('single-page-recipe-details/:id', async (req, res) => {
+// update recipe title and description
+router.put('/update-title-desc/:id', async (req, res) => {
 
   try {
-
-    const data = await Recipes.findByPk(req.params.id)
-    const recipeData = data.toJSON();
-
-    console.log(recipeData);
-    res.json(recipeData);
+    const recipeData = await Recipes.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    });
+    res.json({
+      success: true,
+      data: recipeData,
+      message: 'Recipe Updated!'
+    });
 
   } catch (err) {
+    console.log(err)
     res.status(500).json(err)
   }
+});
 
-})
+// get details for a single recipe
+// router.get('single-page-recipe-details/:id', async (req, res) => {
+
+//   try {
+
+//     const data = await Recipes.findByPk(req.params.id)
+//     const recipeData = data.toJSON();
+
+//     console.log(recipeData);
+//     res.json(recipeData);
+
+//   } catch (err) {
+//     res.status(500).json(err)
+//   }
+
+// })
 
 
 module.exports = router;

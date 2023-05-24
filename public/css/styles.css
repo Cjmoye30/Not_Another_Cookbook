@@ -155,5 +155,7 @@ footer {
     width: 100%;
 }
 
-
+.modal-dialog, .modal-content {
+    width: 700px;
+}
 

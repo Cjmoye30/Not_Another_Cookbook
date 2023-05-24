@@ -16,8 +16,39 @@ $(".image-delete-button").on("click", async (e) => {
 
 });
 
-// save recipe title and description changes
+// update recipe title and description
 $(".save-title-desc").on("click", async (e) => {
+
+    const newRecpieName = $("#newRecipeName");
+    const newRecipeDesc = $("#newRecipeDesc");
     const recipeID = e.target.id;
 
-})
+    const recipeObj = {
+        recipe_name: newRecpieName.val(),
+        description: newRecipeDesc.val()
+    };
+
+    console.log("Recipe Object: ", recipeObj)
+    
+    const response = await fetch(`/api/users/update-title-desc/${recipeID}`, {
+        method: "PUT",
+        body: JSON.stringify(recipeObj),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    const responseData = await response.json();
+    console.log(responseData);
+
+    if (responseData.success) {
+        window.location.reload()
+    }  else {
+        console.log("Something went wrong! Try again!")
+    }
+
+});
+
+// update recipe ingredients
+
+// update recipe instructions
